@@ -24,5 +24,101 @@ DCL (Data control langauge):
 TCL (Transaction control langauge):
 	==> Commit 
 	==> Roll back
+	
 
+Creating a database:
+  Syntax:
+	create database <database-name>
+  Example:
+	
+	mysql> create database pp;
+	Query OK, 1 row affected (0.02 sec)
+To see the available database:
+	Syntax:
+		show databases
+	Example:
+		mysql> show databases;
+	+--------------------+
+	| Database           |
+	+--------------------+
+	| information_schema |
+	| mysql              |
+	| performance_schema |
+	| pp                 |
+	| practice           |
+	| sakila             |
+	| sys                |
+	| world              |
+	+--------------------+
+	8 rows in set (0.00 sec)
+How to switch the database:
+	Syntax:
+		use <database-name>
+	Example:
+		mysql> use practice;
+		Database changed
+How to delete database:
+	Syntax:
+		Drop database <database-name>
+	Example:
+		mysql> drop database pp;
+		Query OK, 0 rows affected (0.02 sec)
+Datatypes in Mysql:
+	==> Numeric
+	==> String
+	==> Date
+	
+	String Datatypes:
+		==> Char
+		==> Varchar
+		==> Binary
+		==> Varcbinary
+		==> Tinyblob
+		==> Tinytext
+		==> Mediumblob
+		==> Mediumtext
+		==> Blob
+		==> Text
+		==> Longblob
+		==> Longtext
+		==> enum
+		==> set
+	Example:
+		create table data_string(a char,b varchar(20),c binary,d varbinary(20),e tinyblob,f tinytext,g mediumblob,h mediumtext,i blob,j text,k longblob,l
+		longtext,m enum('a','b','c'),n set('d','e','f'));
+	
+	Numeric datatypes:
+		INT, Float
+		Int:
+			==> Bit (i will take only one bit i.e 0 or 1)
+			==> int
+			==> tinyint
+			==> smallint
+			==> mediumint
+			==> bigint
+		Example:
+			create table ten(a int,b tinyint,c smallint,d mediumint,e bigint);
+		Float:
+			==> Float(size,d)
+				Float(p)
+			==> Double(size,d)
+			==> Decimal(size,d)
+		Example:
+			create table eleven(a float(10,2),b double(10,4),c decimal(10,5));
+		Date:
+			==> Date
+			==> Datetime
+			==> Time
+			==> Timestamp
+			==> Year
+Creating a table:
+	Syntax:
+		CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+	);
+	Example:
+	
+		
 	
