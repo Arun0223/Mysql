@@ -59,6 +59,36 @@ select * from sixteen;
 create table date_time(a date,b datetime,c time,d timestamp,e year);
 insert into date_time values('1999-05-10','1999-05-10 12:25:50','12:25:50','19990510121543',1999);
 select * from date_time;
+show tables;
+create table data_typess(a bit,b int,c tinyint,d smallint,e mediumint,f bigint,g double(10,1),h float(10,2),i decimal(10,2),j char,k varchar(20),
+l binary,m tinyblob,n tinytext,o mediumblob,p mediumtext,q text,r blob,s longblob,t longtext,u enum('a','b','c'),v set('d','e','f'),w date,
+x datetime,y time,z timestamp,aa year);
+show tables;
+desc data_types1;
+insert into data_typess values(1,10,100,200,300,32000,10.1,10.02,10.02,'a','arun kumar','a','arun kumar','arun kumar muduthanapelli',
+'arun','kumar','aaaa','aaaa','ooooo','ooooooo','a','e','1999-05-10','1999-05-10 11:05:20','11:05:20','19990510110520',1999);
+select * from data_typess;
+
+
+create table ff(a float(10,1));
+select * from f;
+insert into ff values(1.1);
+select * from ff;
+
+create table num_datatypes(a bit,b tinyint,c mediumint,d int,e bigint,f float(10,2),g double(10,2),h decimal(10,2));
+desc num_datatypes;
+insert into num_datatypes values(1,100,200,10,10000,10.02,10.01,10.10);
+select * from num_datatypes;
+create table text_datatypes(a char,b varchar(20),c binary,d varbinary(20),e tinytext,f tinyblob,g mediumtext,h mediumblob,i text,j blob,
+k longblob,l longtext,m enum('a','b','c'),n set('d','e','f'));
+desc text_datatypes;
+insert into text_datatypes values('a','arun kumar','a','arun','arun kumar','muduthanapeli','arun kumar muduthanapelli','muduthanapelli kumar',
+'kumar','aaaaa','zzzzz','nnnn','a','d');
+select * from text_datatypes;
+create table date_datatypes(a date,b datetime,c time,d timestamp,e year);
+insert into date_datatypes values('1999-05-10','1999-05-10 22:02:20','22:02:20','1999-05-10 22:02:00',1999);
+select * from date_datatypes;
+
 
 
 

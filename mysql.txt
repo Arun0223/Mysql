@@ -111,6 +111,11 @@ Datatypes in Mysql:
 			==> Time
 			==> Timestamp
 			==> Year
+			
+	Example:
+	create table data_typess(a bit,b int,c tinyint,d smallint,e mediumint,f bigint,g double(10,1),h float(10,2),i decimal(10,2),j char,k varchar(20),
+	l binary,m tinyblob,n tinytext,o mediumblob,p mediumtext,q text,r blob,s longblob,t longtext,u enum('a','b','c'),v set('d','e','f'),w date,
+	x datetime,y time,z timestamp,aa year);
 Creating a table:
 	Syntax:
 		CREATE TABLE table_name (
@@ -120,5 +125,6 @@ Creating a table:
 	);
 	Example:
 	
+
 		
 	
