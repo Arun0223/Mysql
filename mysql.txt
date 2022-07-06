@@ -1,0 +1,28 @@
+MY SQL:
+	Sub querys of mysql:
+	==> DDL (Data defination langauge)
+	==> DML (Data manipulation langauge)
+	==> DCL (Data control langauge)
+	==> DQL	(Data query langauge)
+	
+DDL (Data defination langauge):
+	==> Create
+	==> Drop
+	==> Alter
+	==> Truncate
+	==> Rename
+	
+DML (Data manipulation langauge):
+	==> Insert
+	==> update
+	==> delete
+DQL (Data query langauge):
+	==> select
+DCL (Data control langauge):
+	==> Grant
+	==> Revoke
+TCL (Transaction control langauge):
+	==> Commit 
+	==> Roll back
+
+	
