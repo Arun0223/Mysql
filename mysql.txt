@@ -1,5 +1,5 @@
 MY SQL:
-	Sub querys of mysql:
+	Sub langauges of mysql:
 	==> DDL (Data defination langauge)
 	==> DML (Data manipulation langauge)
 	==> DCL (Data control langauge)
@@ -123,7 +123,120 @@ Creating a table:
     column2 datatype,
     column3 datatype,
 	);
+	==> While creating the table we have few factors
+	1)Default    ==> we can give default value here if we didn't isert any value default value will insert
+	2)Not null   ==> if we prsent to the coloumn then the coloumn shouldn't be null
+	3)auto_increment ==> Then the value will increase automatically
+	4)Primary key ==> it's a single or combination of coloumn which will define entire row
+				==> it shouldn't be null	
+				==> it's unique
 	Example:
+	create table students(id int not null auto_increment,name varchar(20) default 'XXXXX',dob date,pass enum('y','n'),primary key(id));
+Inserting into table:
+	Syntax:
+		Insert into <table-name> values(value1,value2......n)
+		insert into <table-name>(column1,column3) values(value1,value3);
+		
+	Example:
+		insert into students values(1,'arun kumar','1999-05-10','y');
+		insert into students values(2,'sai teja','1997-05-10','y');
+		insert into students(id,name) values(3,'Harish s');
+		insert into students(id,dob) values(4,'1998-7-12');
+Adding a new coloumn to the table:
+	==> we are using alter keyword for adding a new coloumns to the table
+	==> Syntax:
+		alter table <table-name> new_coloumn_name <data_type>
+			here again we have two factors	
+				==> after  ==> to create the new_coloumn after the existing coloumn_name
+				==> first  ==> to create the new_coloumn at first only
+		alter table <table-name> new_coloumn_name <data_type> after <coloumn_name>
+		alter table <table-name> new_coloumn_name <data_type> first
+	Example:
+		alter table students add fathers_name varchar(50) after name;
+		alter table students add aa bit first;
+How to change a coloumn in sql table:
+	==> for this also we will use alter keyword
+	Syntax:
+		alter table <table-name> change coloumn <existing_coloumn_name> <new_coloumn_name> data_type
+		alter table <table-name> change coloumn <existing_coloumn_name> <existing_coloumn_name> data_type
+	Example:
+		alter table students change column fathers_name parent_name varchar(100);         ## This one for changing the coloumn_name
+		alter table students change column name name varchar(60);                         ## This one for changing the data_type
+Deleting the coloumn from table:
+	==> For this also we will use alter keyword
+	Syntax:
+		alter table <table-name> drop coloumn <coloumn_name>
+	Example:
+		alter table students drop column aa;
+How to delete the table:
+	==> There are two keywords for deleting a table
+		1)Drop ==> To delete the entire table data along with stracture
+		2)Truncate ==> To delete only table data
+	Syntax:
+		Drop table <table_name> 
+		Truncate table <table_name>
+	Example:
+		truncate table students;
+		drop table students;
+Selecting query from sql table:
+	==> For this we will use select keyword
+	Syntax:
+		select <coloumn1,coloumn2...n> from table ==> to select particular coloumns
+		select * from table ==> to select all the coloumns from table
+		select coloumn1 as c1 from table ==> aliasing the coloumn1 name as c1 in result
+	Example:
+		select * from student;
+		select name student_name from student;
+		select age as a from student;
+Updating the data in table:
+	==> For this we will use a keyword UPDATE
+	Syntax:
+		update <table-name> set <coloumn>=<new_value> where <condition>
+	Example:
+		update student set age=24 where name='sai teja';
+		update student set age=22 where age is null;
+Deleting a data from the table:
+	==> For this we are using a keyword called DELETE
+		Syntax:
+			delete from <table-name> where <condition>
+		Example:
+			delete from student where name ='zzzz';
+			delete from student where name in ('xxxx','yyyy');
+Dropping the primary key from table:
+	==> For this we will use keyword Alter
+	Syntax:
+		alter table <table_name> drop primary key;
+		if the primary key has auto_increment constraint then we need change that coloumn to same coloumn_name with out auto_increment then we need
+		to drop primary key
+	Example:
+		alter table s drop primary key;
+		alter table students change column id id int not null;
+		alter table students drop primary key;
+Adding the primary key to existing table
+	==> For this we will use alter keyword
+		Syntax:
+			alter table <table_name> add primary key(<coloumn_name>)
+		Example:
+			alter table students add primary key(id);
+Foreign key:
+	==> The key which refers to the primary key in another table
+	==> it work based on the primary key
+	==> it will accepts only primary key
+	==> Null values are accepted
+	Syntax:
+		create table <table-name>(<coloumn1>,<coloumn2>,....<coloumnn> foreign key(coloumn_name) refences(<table-name.coloumn_name>))
+	Example:
+		create table certificate_log(student_id int,certificate_id int,received_date date,foreign key(student_id) references student(id),foreign key(certificate_id) references certificates(id));
+	in foreign if have 1 factor i.e.
+	on delete cascade
+Constraints in sql:
+		==> Not null
+
+
+
+	
+
+	
 	
 
 		

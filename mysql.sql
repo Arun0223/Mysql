@@ -88,6 +88,131 @@ select * from text_datatypes;
 create table date_datatypes(a date,b datetime,c time,d timestamp,e year);
 insert into date_datatypes values('1999-05-10','1999-05-10 22:02:20','22:02:20','1999-05-10 22:02:00',1999);
 select * from date_datatypes;
+show tables;
+select * from data_typess;
+create database university;
+use university;
+show tables;
+create table students(id int not null auto_increment,name varchar(20) default 'XXXXX',dob date,pass enum('y','n'),primary key(id));
+desc students;
+insert into students values(1,'arun kumar','1999-05-10','y');
+insert into students values(2,'sai teja','1997-05-10','y');
+insert into students(id,name) values(3,'Harish s');
+insert into students(id,dob) values(4,'1998-7-12');
+select * from students;
+alter table students add fathers_name varchar(50) after name;
+alter table students add aa bit first;
+desc students;
+-- changing the characteristics of coloumn in table
+alter table students change column fathers_name parent_name varchar(100); -- This one for changing the coloumn_name
+desc students;
+alter table students change column name name varchar(60);  -- This one for changing the data_type
+-- Deleting the coloumn from table
+alter table students drop column aa;
+select * from students;
+-- Deleting the table
+-- For deleting the table we will use two keywords
+-- 1)truncate
+-- 2)Drop
+truncate table students;
+select * from students;
+drop table students;
+select * from students;
+create table student1(id int,name varchar(50),age int);
+desc student;
+insert into student values(1,'Arun kumar',23),
+(2,'sai teja',25),
+(3,'Harish s',24);
+select * from student;
+select name student_name from student;
+select age as a from student;
+-- updating the particular data in a table in a database
+select * from student;
+-- if you got error in updating the values in a table use below command
+SET SQL_SAFE_UPDATES = 0;
+update student set age=24 where name='sai teja';
+select * from student;
+insert into student(id,name) values(4,'xxxx'),(5,'yyyy'),(6,'zzzz');
+update student set age=22 where age is null;
+select * from student;
+-- deleting a particular data from table
+delete from student where name ='zzzz';
+delete from student where name in ('xxxx','yyyy');
+select * from student;
+desc student;
+alter table student drop primary key;
+desc student;
+show tables;
+desc student1;
+drop table student1;
+create table students(id int not null auto_increment,name varchar(50),dob date,primary key(id));
+desc students;
+alter table students drop primary key;
+create table s(id int,name varchar(50),primary key(id));
+desc s;
+alter table s drop primary key;
+desc s;
+desc students;
+alter table students change column id id int not null;
+desc students;
+alter table students drop primary key;
+desc students;
+alter table students add primary key(id);
+desc students;
+show tables;
+create table student(id int not null,name varchar(50),email varchar(100),primary key(id));
+desc student;
+create table certificates(id int not null,academic_year enum('1','2','3','4'),sem set('1','2'));
+desc certificates;
+alter table certificates add primary key(id);
+create table certificate_log(student_id int,certificate_id int,received_date date,foreign key(student_id) references student(id),foreign key(certificate_id) references certificates
+(id));
+show tables;
+show databases;
+use university;
+show tables;
+desc certificate_log;
+insert into certificate_log values(1,1,'2022-05-10');
+insert into student values(1,'arun kumar','arun@gmail.com'),
+(2,'sai teja','sai@gmail.com'),
+(3,'harish s','harish@gmail.com');
+select * from student;
+desc certificates;
+insert into certificates values(1,1,1);
+select * from certificates;
+insert into certificates values(2,1,2),
+(3,2,1),
+(4,2,2),
+(5,3,1),
+(6,3,2),
+(7,4,1),
+(8,4,2);
+select * from certificates;
+insert into certificate_log values(2,4,'2022-05-10'),
+(1,2,'2022-07-01');
+select * from certificate_log;
+insert into certificate_log values(5,5,'2021-12-10');
+select * from certificate_log;
+insert into certificate_log(received_date) values('2020-05-11');
+select cvt.student_id from certificate_log cvt;
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
 
 
 
