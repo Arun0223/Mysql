@@ -259,6 +259,85 @@ select max(marks) from student;
 select min(marks) from student;
 select count(marks) from student;
 select count(distinct marks) from student;
+show tables;
+drop table student;
+create table student(id int auto_increment,name varchar(50),age int,primary key(id),check(age>15));
+show tables;
+desc student;
+create table marks(id int auto_increment,marks int,rankk int,primary key(id));
+create table sports(id int auto_increment,sports varchar(30),foreign key(id) references student(id));
+desc sports;
+desc marks;
+alter table marks change column id id int;
+create table nsc(id int,nsc enum('nss','ncc'),foreign key(id) references student(id));
+desc nsc;
+insert into student values(1,'student1',18),
+(2,'student2',17),
+(3,'student3',18),
+(4,'student4',17),
+(5,'student5',19),
+(6,'student6',18),
+(7,'student7',17),
+(8,'student8',18),
+(9,'student9',18),
+(10,'student10',17);
+select * from student;
+insert into marks values(1,89,6),
+(2,95,3),
+(3,76,9),
+(4,80,8),
+(5,69,10),
+(6,92,4),
+(7,90,5),
+(8,82,7),
+(9,97,2),
+(10,98,1);
+select * from marks;
+show tables;
+insert into sports values(1,'cricket'),
+(2,'vollyball'),
+(5,'basketball'),
+(6,'cricket'),
+(7,'vollyball'),
+(10,'basketball');
+select * from sports;
+insert into nsc values(1,'ncc'),
+(2,'nss'),
+(3,'ncc'),
+(6,'nss'),
+(8,'nss'),
+(10,'ncc');
+select * from nsc;
+-- inner join (common data between two tables)
+show tables;
+select t1.id,t1.name from student as t1 inner join marks as t2 on t1.id=t2.id;
+select * from student as t1 inner join nsc as t2 on t1.id>t2.id;
+select * from student as t1 inner join nsc as t2 on t1.id<t2.id;
+-- left join (common data + left table data)
+select * from student;
+select * from nsc;
+show tables;
+select * from sports;
+select t1.id,t1.name,t2.sports from student as t1 left join sports as t2 on t1.id>t2.id;
+-- Right join (common data + right table data)
+select * from student as t1 right join sports as t2 on t1.id<t2.id;
+select * from marks;
+-- self join
+select * from student;
+alter table student add column marks int not null;
+desc student;
+update student set marks=87 where id=10;
+select * from student;
+select * from student as t1 inner join student as t2 on t1.marks<t2.marks group by(t1.id);
+select * from student as t1 inner join student as t2 on t1.age>t2.age;
+select t1.id,count(t1.id) from student as t1 inner join student as t2 on t1.marks<t2.marks group by(t1.id);
+
+
+
+
+
+
+
 
 
 

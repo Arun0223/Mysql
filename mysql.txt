@@ -274,6 +274,40 @@ Aggregrate functions in sql:
 		select min(marks) from student;
 		select count(marks) from student;
 		select count(distinct marks) from student;
+Joins in sql:
+	==> Joins are used to join the different table
+	Types of joins
+		==> Inner join (common elemnets between two tables)
+		==> Left join (common elemnets + left table)
+		==> Outer join (full data) ==> My sql won't support but concept was same
+		==> Right join (common elemnets + right table)
+		==> Self join
+		Joins are used to combined the data between different tables
+		
+		Syntax:
+		select * from <table-name> as t1 <join> <table-name> as t2 on <comdition>
+		Example:
+			-- inner join (common data between two tables)
+			show tables;
+			select t1.id,t1.name from student as t1 inner join marks as t2 on t1.id=t2.id;
+			select * from student as t1 inner join nsc as t2 on t1.id>t2.id;
+			select * from student as t1 inner join nsc as t2 on t1.id<t2.id;
+			-- left join (common data + left table data)
+			select * from student;
+			select * from nsc;
+			show tables;
+			select * from sports;
+			select t1.id,t1.name,t2.sports from student as t1 left join sports as t2 on t1.id>t2.id;
+			-- Right join (common data + right table data)
+			select * from student as t1 right join sports as t2 on t1.id<t2.id;
+			select * from marks;
+	Self join: *(join on same table)
+		==> self join is used when you want compare the data in same table
+		==> For this we will use inner join as join on same table
+		Example:
+			select * from student as t1 inner join student as t2 on t1.marks<t2.marks;
+			select * from student as t1 inner join student as t2 on t1.age>t2.age;
+		
 
 	
 		
