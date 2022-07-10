@@ -195,6 +195,80 @@ insert into certificate_log values(5,5,'2021-12-10');
 select * from certificate_log;
 insert into certificate_log(received_date) values('2020-05-11');
 select cvt.student_id from certificate_log cvt;
+select * from certificate_log;
+drop table certificate_log;
+show tables;
+desc certificates;
+create table certificate_log(student_id int,certificate_id int,recieved_date date,foreign key(student_id) references student(id) on delete cascade,foreign key(certificate_id)
+references certificates(id) on delete cascade);
+desc certificate_log;
+insert into certificate_log values(1,2,'2022-05-10');
+select * from certificate_log;
+insert into certificate_log values(10,20,'2022-05-10');
+insert into certificate_log(recieved_date) values('2022-07-01');
+insert into certificate_log values(3,2,'2022-05-10');
+delete from student where id=1;
+select * from certificate_log;
+delete from student where id=3;
+-- not null,unique,check
+show tables;
+drop table student;
+drop table certificate_log;
+drop table certificates;
+create table student(id int auto_increment not null,name varchar(50),gmail varchar(100),age int,unique(gmail),check(age>15),primary key(id));
+show tables;
+desc student;
+insert into student(name,gmail,age) values('student1','mail1@gmail.com',20),
+('student2','mail2@gmail.com',22),
+('student3','mail3@gmail.com',18);
+select * from student;
+insert into student(name,gmail,age) values('student4','mail1@gmail.com',20);
+insert into student(name,gmail,age) values('student4','mail4@gmail.com',18);
+alter table student drop column gmail;
+alter table student add column(mark int,gender varchar(20));
+alter table student change column mark marks int;
+insert into student values(1,'student1',20,92,'male'),
+(2,'student2',22,94,'male'),
+(3,'student3',20,92,'female'),
+(4,'student4',24,96,'male'),
+(5,'student5',21,88,'male'),
+(6,'student6',23,93,'female'),
+(7,'student7',20,95,'female'),
+(8,'student8',24,97,'female'),
+(9,'student9',21,92,'male'),
+(10,'student10',22,90,'female');
+select * from student;
+delete from student;
+select name,age,gender from student;
+select name n,age a,gender g from student;
+select * from student where age>22;
+select * from student where age=22;
+select marks m from student where id=8;
+select id roll_no,marks m from student where id<8;
+select * from student where age<>22; -- not equal
+select * from student where age between 21 and 22;
+select * from student where age in(22,23,24);
+select * from student where name like '%1%';
+select * from student where name like '1%';
+select * from student where name like '%1';
+-- Aggregrate functions in SQL
+select count(name) from student where marks>95;
+select avg(marks) from student;
+select count(*) from student where marks>90;
+select max(marks) from student;
+select min(marks) from student;
+select count(marks) from student;
+select count(distinct marks) from student;
+
+
+
+
+
+
+
+
+
+
 
 
 

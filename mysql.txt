@@ -228,9 +228,55 @@ Foreign key:
 	Example:
 		create table certificate_log(student_id int,certificate_id int,received_date date,foreign key(student_id) references student(id),foreign key(certificate_id) references certificates(id));
 	in foreign if have 1 factor i.e.
-	on delete cascade
+	on delete cascade ==> which means if any row deleted from parent table automatically the record in children_table which belongs to that parent table record delete
+	
+	Syntax:
+		create table <table-name>(<coloumn1>,<coloumn2>,....<coloumnn> foreign key(coloumn_name) refences(<table-name.coloumn_name>))
+	Example:
+		create table certificate_log(student_id int,certificate_id int,recieved_date date,foreign key(student_id) references student(id) on delete cascade,foreign key(certificate_id) references certificates(id) on delete cascade);
+	
 Constraints in sql:
-		==> Not null
+		==> Not null ==> it won't accept null values
+		==> Unique  => it will be unique
+		==> Check ==> it will insert the values based on the conditions
+		==> in this all three constraints not null can be write beside datatype
+		Syntax and example:
+			create table student(id int auto_increment not null,name varchar(50),gmail varchar(100),age int,unique(gmail),check(age>15),primary key(id));
+SELECT AND WHERE CLAUSE:
+		==> where clause is used to filter the data from table
+		in where clause we have following filtering operations
+			==> equality
+			==> lessthan or greater than
+			select name,age,gender from student;
+	select name n,age a,gender g from student;
+	select * from student where age>22;
+	select * from student where age=22;
+	select marks m from student where id=8;
+	select id roll_no,marks m from student where id<8;
+	select * from student where age<>22; -- not equal
+	select * from student where age between 21 and 22;
+	select * from student where age in(22,23,24);
+	select * from student where name like '%1%';
+	select * from student where name like '1%';
+	select * from student where name like '%1';
+Aggregrate functions in sql:
+	==> count
+	==> max
+	==> min
+	==> sum
+	==> avg
+	==> distinct
+	Example:
+		select count(name) from student where marks>95;
+		select avg(marks) from student;
+		select count(*) from student where marks>90;
+		select max(marks) from student;
+		select min(marks) from student;
+		select count(marks) from student;
+		select count(distinct marks) from student;
+
+	
+		
 
 
 
