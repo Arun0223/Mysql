@@ -417,6 +417,66 @@ insert into grades values(1,0,9),
 select t2.grade,if(t2.grade>8,name,null) from student as t1 inner join grades as t2 on t1.marks<=t2.max_mark and t1.marks>=t2.min_mark order by t2.grade desc,t1.name asc,t1.marks asc;
 select * from student as t1 inner join grades as t2 on t1.marks<=t2.min_mark;
 select * from grades;
+-- Normalization in DB
+-- 1NF normalization
+create table fnf(id int,name varchar(50),marks int,age int,ncc enum('yes','no'),ncc_grade enum('a','b','c'),nss enum('yes','no'),nss_grade enum('a','b','c'));
+desc fnf;
+insert into fnf(id,name,marks,age,ncc,ncc_grade) values(1,'s1',67,18,'yes','b');
+select * from fnf;
+insert into fnf(id,name,marks,age,nss,nss_grade) values(2,'s2',77,19,'yes','a');
+-- instead of above table we can simply devide the table to avoid insertion,updation and deletion anomalies
+create table fnfs(id int,name varchar(50),marks int,age int,primary key(id));
+create table fnfnss(id int,nss enum('yes','no'),nss_grade enum('a','b','c'),foreign key(id) references fnfs(id) on delete cascade);
+show tables;
+insert into fnfs values(1,'s1',18,77),(2,'s2',17,67);
+select * from fnfnss;
+insert into fnfnss values(2,'yes','b');
+-- so if we segregrate the table like this simply we can insert delete and update the data according the requirement also 
+-- table insertion and updation should be unique
+-- ************************************************************************************************** --
+-- 2NF NORMALIZATION:
+-- it should satisfy 1NF and there is no partial dependency
+-- if we have multiple coloumns has prime attributes then another non-primary attribute partially depends on one of primary attribute
+-- Example:
+create database norm;
+use norm;
+show tables;
+create table students(student_id int,sub_id int,student_name varchar(50),subject_name varchar(50),marks int,teacher_name varchar(50),teacher_age int,primary key(student_id,sub_id));
+desc students;
+insert into students values(2,102,'s2','sub2',79,'t2',45);
+select * from students;
+-- here there is partial dependency so we need to devide the table according to the rquirement
+create table student(id int,name varchar(50),primary key(id));
+desc subject;
+create table subject(id int,sub_name varchar(50),tec_name varchar(50),age int,primary key(id));
+create table marks(student_id int,subj_id int,marks int,foreign key(student_id) references student(id),foreign key(subj_id) references subject(id));
+desc marks;
+insert into student values(1,'s1'),(2,'s2');
+select * from student;
+insert into subject values(101,'sub1','t1',43),(102,'sub2','t2',45);
+insert into marks values(1,101,67),(1,102,77),(2,102,79);
+select * from marks;
+-- 3NF normalizaion
+-- it should be in 2NF
+-- There is no transitive dpendencies (Non-prime attribute depends on another non-primary attribute)
+select * from subject; -- (here teacher age depends upon tecaher name)
+create table teacher(id int,tec_name varchar(20),age int,primary key(id));
+select * from teacher;
+insert into teacher values(1,'t1',43),(2,'t2',45);
+alter table subject add column tec_id int;
+alter table subject add foreign key(tec_id) references teacher(id);
+select * from subject;
+update subject set tec_id=2 where id=102;
+-- so now in teacher table no dependencie
+-- BCNF Boycee codd 1)table should be in 3NF and non-prime attribute shouldn't depend on prime attribute it's very rare so upto 3NF is enough
+
+
+
+
+
+
+
+
 
 
 

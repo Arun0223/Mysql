@@ -360,8 +360,45 @@ SUBQUERIES:
 		Example:
 			select salary as nth_highest_salary from employee as t1 where 0=(select count(*) from employee as t2 where t1.salary<t2.salary);
 			in above subqueri it will print the no of employees who has more salary in t2 compared to t1 i.e. in employee table
+Normalization in Database:
+	normalization:
+		==> Normalization is nothing but organazing the data to avoid it redudancy and anomolies
+		==> To avoid duplication
+	==> There are 3 types of normalization
+		1) 1NF normalization
+		2) 2NF normalization
+		3) 3NF normalization
+		4) BCNF normalization
+		
+		1NF normalization:
+			==> To remove insert anomolies
+			==> To remove delete anomolies
+			==> To remove update anomolies
+			==> The coloumns are unordered
+			==> Rows are unordered
+			==> There is duplicated data
+			==> The insertion and updation of element to a row should be unique
+		2NF normalization:
+			==> Table should be in 1NF
+			==> There is no partial dependency
+			    if we have multiple coloumns has prime attributes then another non-primary attribute partially depends on one of primary attribute
+		3NF normalization
+			==> Table should be in 2NF normalization
+			==> it shouldn't have transitive dependencies
+				if in table non-prime attribute depends on another non-primary attribute
+		BCNF(BOYCEE CODD) normalization or 4NF normalization: (it's very rare)
+			==> Table should be in 3NF normalization
+			==> prime atrribute shouldn't depend upon non-prime attribute
+Views in sql:(virtual tables) 
+	==> it is used to access the data in efficient and secure way
+	==> There is no physical exsitance for the table
+
+	
+	
 			
-			
+				
+		
+	
 				
 			
 		
