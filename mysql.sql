@@ -331,6 +331,55 @@ select * from student;
 select * from student as t1 inner join student as t2 on t1.marks<t2.marks group by(t1.id);
 select * from student as t1 inner join student as t2 on t1.age>t2.age;
 select t1.id,count(t1.id) from student as t1 inner join student as t2 on t1.marks<t2.marks group by(t1.id);
+select * from student;
+select * from marks;
+select * from sports;
+select * from nsc;
+show tables;
+select t1.id,t1.name,t2.nsc from student as t1 right join nsc as t2 on t1.id=t2.id;
+select * from student;
+select * from student order by marks;
+select * from student order by marks desc;
+select * from student order by marks desc,age desc,name desc;
+alter table student add column sports varchar(30);
+desc student;
+update student set sports='cricket' where id=10;
+select * from student;
+select sports,count(*) as no_of_students,avg(marks) from student group by sports order by no_of_students desc;
+select sports,age,count(*) as no_of_students,avg(marks) from student group by sports,age order by no_of_students desc,age;
+-- Having clause on above query
+select sports,count(name) c,avg(marks) as avg from student group by sports having c>=3 and avg>=89 order by c desc;
+-- Ranks (giving rank based on our particular coloumn)
+select * from student;
+select id,name,marks,rank() over(order by marks desc,age desc) as students_rank from student; -- rank function will skip the rank if both results are same
+select id,name,marks,row_number() over(order by marks desc,age desc) as students_rank from student;
+select id,name,marks,dense_rank() over(order by marks desc,age desc) as students_rank from student;
+-- UNION AND INTERSECT
+select * from student;
+select * from student where sports='cricket';
+select * from student where sports='football'
+union
+select * from student where sports='volleyball';
+select avg(marks) from student where sports='cricket';
+-- Normal subqueries
+select id,name from student where sports='football' and marks>(select avg(marks) from student where sports='cricket');
+-- Corelated subqueries
+create table employee (id int not null auto_increment,name varchar(50),age int,salary int,gender enum('male','female'),primary key(id));
+desc employee;
+insert into employee values(1,'employee1',45,4500,'male'),
+(2,'employee2',37,4590,'male'),
+(3,'employee3',55,45000,'female'),
+(4,'employee4',28,5000,'female'),
+(5,'employee5',24,2500,'female');
+select * from employee;
+-- find the nth highest salary of employee
+select salary as nth_highest_salary from employee as t1 where 0=(select count(*) from employee as t2 where t1.salary<t2.salary);
+select salary from employee t1 where 0=(select count(*) from employee t2 where t1.salary<t2.salary);
+
+
+
+
+
 
 
 

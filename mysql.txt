@@ -307,6 +307,63 @@ Joins in sql:
 		Example:
 			select * from student as t1 inner join student as t2 on t1.marks<t2.marks;
 			select * from student as t1 inner join student as t2 on t1.age>t2.age;
+CLAUSES:
+	==> Order by (like putting results in an order) 
+		There are 2 types of orders
+		1) ascending
+		2) descending
+		Example:
+			select * from student order by marks;
+			select * from student order by marks desc;
+			select * from student order by marks desc,age desc; ==> you can give 2 coloumn names also if 2 persons have same name then it will 
+			order by using age
+	==> Group by (like grouping the result)
+		Example:
+			select sports,count(*) as no_of_students,avg(marks) from student group by sports order by no_of_students desc;
+			select sports,age,count(*) as no_of_students,avg(marks) from student group by sports,age order by no_of_students desc,age;
+	==> Having:
+			Having clause used when group by condition used
+			Syntax:
+				select * from <table-name> group by <coloumn> having <condition>
+			Example:
+				select sports,count(name) c,avg(marks) as avg from student group by sports having c>=3 and avg>=89 order by c desc;
+	==> Ranks:
+		==> in ranks we have three functions
+			1)rank()
+			Example:
+				select id,name,marks,rank() over(order by marks desc,age desc) as students_rank from student; -- rank function will skip the rank if both results are same
+			2)row_number() -- row_number function will give number to the row
+			Example:
+				select id,name,marks,row_number() over(order by marks desc,age desc) as students_rank from student;
+			3)dense_rank() -- it is a proper one and it will give rank occurately independednt of row numbers
+			Example:
+				select id,name,marks,dense_rank() over(order by marks desc,age desc) as students_rank from student;
+UNION AND INTERSECT:
+	==> UNION -- it will combine total_rows in 2 select queries
+		Example:
+			select * from student where sports='football'
+			union
+			select * from student where sports='volleyball';
+	==> INTERSECT -- it will give common elemnets in 2 select queries -- it won't support in my sql
+			select * from student where sports='football'
+			intersect
+			select * from student where sports='volleyball';
+SUBQUERIES:
+	There are 2 types of subqueries
+	1) normal subqueries    -- only one time execution of the subqueri will occur
+	2) corelated subqueries -- for every row the subqueri will execute
+	
+	==> Normal subqueries:
+		Example:
+			select id,name from student where sports='football' and marks>(select avg(marks) from student where sports='cricket');
+	==> corelated subqueries:
+		Example:
+			select salary as nth_highest_salary from employee as t1 where 0=(select count(*) from employee as t2 where t1.salary<t2.salary);
+			in above subqueri it will print the no of employees who has more salary in t2 compared to t1 i.e. in employee table
+			
+			
+				
+			
 		
 
 	
