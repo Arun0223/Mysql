@@ -392,7 +392,44 @@ Normalization in Database:
 Views in sql:(virtual tables) 
 	==> it is used to access the data in efficient and secure way
 	==> There is no physical exsitance for the table
-
+	Example:
+		create view my_view as select * from employee;
+		select * from my_view;
+		create view max_salary1 as select salary from employee as t1 where 0=(select count(*) from employee as t2 where t1.salary<t2.salary);
+		select * from max_salary1;
+Stored procedures in mysql:
+	For example we have complex queries to use it multiple times we can use stored procedures like aliasing
+	Synatx:
+		delimiter //
+		create <procedure-name> begin <query>; end//
+		Example:
+			delimiter //
+			create procedure my_procedure() begin select * from employee where salary=5000;
+			end 
+			
+			call my_procedure() ## for calling procedure
+			
+			Procedure with parameters;
+			Synatx:
+				delimiter //
+				create <procedure-name(parameter data_type)> begin <query>; end//
+			Example:
+				delimiter //
+				create procedure my_procedure2(e_salary int) begin select * from employee where salary=e_salary;
+				end //
+				call my_procedure2(45000)
+Indexes in mysql:
+	=> if index there the search will go there automatically
+	==> it's a time saving query
+	Synatx:
+		create index <index-name> on <table-name> (<column_name> asc);
+	Example:
+		create index salary_index on employee (salary asc);
+	
+				
+			
+			
+		
 	
 	
 			

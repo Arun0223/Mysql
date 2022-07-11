@@ -469,10 +469,31 @@ select * from subject;
 update subject set tec_id=2 where id=102;
 -- so now in teacher table no dependencie
 -- BCNF Boycee codd 1)table should be in 3NF and non-prime attribute shouldn't depend on prime attribute it's very rare so upto 3NF is enough
-
-
-
-
+select * from student;
+use university;
+show tables;
+select * from employee;
+-- views in my sql
+create view my_view as select * from employee;
+select * from my_view;
+create view max_salary1 as select salary from employee as t1 where 0=(select count(*) from employee as t2 where t1.salary<t2.salary);
+select * from max_salary1;
+-- stores procedures
+select * from employee;
+delimiter //
+create procedure my_procedure() begin select * from employee where salary=5000;
+end //
+call my_procedure();
+delimiter //
+create procedure my_procedure2(e_salary int) begin select * from employee where salary=e_salary;
+end //
+call my_procedure2(45000);
+-- indexes in sql
+select * from employee; -- here salaries are not in order
+select * from employee where salary>4500;
+select * from employee;
+create index salary_index on employee (salary asc);
+select * from employee where age>25;
 
 
 
