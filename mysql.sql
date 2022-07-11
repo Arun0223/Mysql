@@ -375,6 +375,50 @@ select * from employee;
 -- find the nth highest salary of employee
 select salary as nth_highest_salary from employee as t1 where 0=(select count(*) from employee as t2 where t1.salary<t2.salary);
 select salary from employee t1 where 0=(select count(*) from employee t2 where t1.salary<t2.salary);
+alter table student rename students;
+show tables;
+select salary from employee as t1 where 0=(select count(*) from employee as t2 where t1.salary<t2.salary);
+select substring(name,length(name)-4,4) from employee where id=1;
+select * from students;
+alter table students rename as student;
+select * from student;
+alter table student drop column sports;
+truncate table student;
+truncate student;
+create table students(id int auto_increment not null,name varchar(50),marks int,primary key(id));
+desc students;
+insert into students values(1,'arun kumar',98),
+(2,'sai teja',90),
+(3,'harish',95),
+(4,'kalyan',96),
+(5,'yeshwanth',87);
+select * from students;
+select length(name) from students where id=2;
+select * from students where marks>75 order by substring(name,length(name)-2,3) asc,id asc;
+show tables;
+select * from employee;
+insert into employee values(6,'employee6',28,5000,'male');
+select * from employee;
+select gender,count(*),avg(salary) from employee group by gender;
+select salary,count(*) from employee group by salary order by salary desc;
+select * from student;
+create table grades(grade int,min_mark int,max_mark int);
+desc grades;
+insert into grades values(1,0,9),
+(2,10,19),
+(3,20,29),
+(4,30,39),
+(5,40,49),
+(6,50,59),
+(7,60,69),
+(8,70,79),
+(9,80,89),
+(10,90,99);
+select t2.grade,if(t2.grade>8,name,null) from student as t1 inner join grades as t2 on t1.marks<=t2.max_mark and t1.marks>=t2.min_mark order by t2.grade desc,t1.name asc,t1.marks asc;
+select * from student as t1 inner join grades as t2 on t1.marks<=t2.min_mark;
+select * from grades;
+
+
 
 
 
